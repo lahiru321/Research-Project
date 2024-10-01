@@ -18,3 +18,9 @@
 **Running the Project**
 After installing the dependencies, you can start the development server with:
 ``` npm start``` 
+
+**Requirements for the backend**
+```pip install -r requirements.txt```
+
+**Run the Flask server:**
+```python app.py```
