@@ -4,7 +4,8 @@ function Social() {
   return (
     <div>
       <h1>Social Page</h1>
-      <p>Explore the social aspect of life here.</p>
+      <p>Explore the social aspect of life here now.</p>
+      <p>join in VR</p>
     </div>
   );
 }
