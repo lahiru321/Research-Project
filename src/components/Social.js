@@ -6,6 +6,7 @@ function Social() {
       <h1>Social Page</h1>
       <p>Explore the social aspect of life here now.</p>
       <p>join in VR</p>
+      <p>NOW!</p>
     </div>
   );
 }
