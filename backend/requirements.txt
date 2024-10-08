@@ -4,4 +4,4 @@ mediapipe
 numpy
 scipy
 firebase
-fastapi uvicorn
+fastapi
