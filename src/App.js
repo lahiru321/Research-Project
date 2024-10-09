@@ -37,6 +37,7 @@ function App() {
 
   return (
     <div>
+      <Navbar isAuthenticated={isAuthenticated} onSignOut={handleSignOut} /> {/* Use Navbar component */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/academic" element={<Academic />} />
