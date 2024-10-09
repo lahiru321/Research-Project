@@ -22,18 +22,6 @@ function App() {
 
   return (
     <div>
-      {isAuthenticated && (
-        <nav style={styles.navbar}>
-          <ul style={styles.navList}>
-            <li><Link to="/" style={styles.navItem}>Home</Link></li>
-            <li><Link to="/academic" style={styles.navItem}>Academic</Link></li>
-            <li><Link to="/relationship" style={styles.navItem}>Relationship</Link></li>
-            <li><Link to="/social" style={styles.navItem}>Social</Link></li>
-            <li><Link to="/financial" style={styles.navItem}>Financial</Link></li>
-            <li><button onClick={handleSignOut} style={styles.signOutButton}>Sign Out</button></li> {/* Sign Out Button */}
-          </ul>
-        </nav>
-      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
