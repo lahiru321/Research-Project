@@ -9,13 +9,10 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "firebase": "^10.14.0",
-    "font-awesome": "^4.7.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0",
+    "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1"
   },
   "browserslist": {
@@ -30,8 +27,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": ".",
-  "devDependencies": {
-    "html-webpack-plugin": "^5.6.0"
-  }
+  "homepage": "."
 }
