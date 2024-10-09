@@ -15,7 +15,7 @@ function App() {
           <li><Link to="/academic" style={styles.navItem}>Academic</Link></li>
           <li><Link to="/relationship" style={styles.navItem}>Relationship</Link></li>
           <li><Link to="/social" style={styles.navItem}>Social</Link></li>
-          <li><Link to="/financial" style={styles.navItem}>Financial</Link></li>
+          <li><Link to="/financial" style={styles.navItem}>ExpenseWise</Link></li>
         </ul>
       </nav>
 
