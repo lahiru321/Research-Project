@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+// App.js
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './components/Home';
 import Academic from './components/Academic';
 import Relationship from './components/Relationship';
@@ -7,12 +8,26 @@ import Social from './components/Social';
 import Financial from './components/Financial';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Navbar from './components/Navbar'; // Import the Navbar component
 import { signOut } from 'firebase/auth';  // Import signOut from Firebase
 import { auth } from './firebase';          // Import the initialized auth
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate(); // Hook for navigation
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setIsAuthenticated(true); // User is signed in
+      } else {
+        setIsAuthenticated(false); // No user is signed in
+      }
+    });
+
+    // Clean up the observer on unmount
+    return () => unsubscribe();
+  }, []);
 
   const handleSignOut = async () => {
     await signOut(auth);
@@ -22,7 +37,7 @@ function App() {
 
   return (
     <div>
-
+      <Navbar isAuthenticated={isAuthenticated} onSignOut={handleSignOut} /> {/* Use Navbar component */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/academic" element={<Academic />} />
@@ -35,12 +50,5 @@ function App() {
     </div>
   );
 }
-
-const styles = {
-  navbar: { backgroundColor: '#f8f8f8', padding: '10px' },
-  navList: { listStyleType: 'none', display: 'flex', justifyContent: 'space-around' },
-  navItem: { textDecoration: 'none', color: 'black', fontWeight: 'bold' },
-  signOutButton: { background: 'none', border: 'none', color: 'black', fontWeight: 'bold', cursor: 'pointer' }, // Styles for Sign Out button
-};
 
 export default App;
