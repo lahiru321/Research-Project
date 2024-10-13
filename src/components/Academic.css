@@ -1,0 +1,40 @@
+/* Academic.css */
+.academic-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .academic-title {
+    font-size: 2em; /* Larger title font */
+    color: #343a40; /* Dark color for title */
+    margin-bottom: 15px; /* Space below title */
+  }
+  
+  .academic-description {
+    font-size: 1.2em; /* Slightly larger font for description */
+    color: #6c757d; /* Gray color for description */
+    margin-bottom: 20px; /* Space below description */
+  }
+  
+  .academic-button {
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    border: none;
+    padding: 10px 20px; /* Padding around the buttons */
+    margin-right: 10px; /* Space between buttons */
+    border-radius: 4px; /* Rounded corners for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+  
+  .academic-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .academic-button:disabled {
+    background-color: #ccc; /* Gray color for disabled button */
+    cursor: not-allowed; /* Not-allowed cursor for disabled button */
+  }
+  
