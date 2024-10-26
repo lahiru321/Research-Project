@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Academic.css'; // Import the CSS file
 
 function Academic() {
   const [isRunning, setIsRunning] = useState(false);
@@ -7,7 +8,7 @@ function Academic() {
   const handleStart = async () => {
     setIsRunning(true);
     try {
-      const response = await fetch('http://localhost:5000/start', { method: 'POST' });
+      const response = await fetch('http://localhost:8000/start', { method: 'POST' });
       if (response.ok) {
         console.log('Engagement detection started');
       }
@@ -20,7 +21,7 @@ function Academic() {
   const handleEnd = async () => {
     setIsRunning(false);
     try {
-      const response = await fetch('http://localhost:5000/end', { method: 'POST' });
+      const response = await fetch('http://localhost:8000/end', { method: 'POST' });
       if (response.ok) {
         console.log('Engagement detection ended');
       }
@@ -30,13 +31,15 @@ function Academic() {
   };
 
   return (
-    <div>
-      <h1>Academic Page</h1>
-      <p>Click the buttons below to start and end the engagement detection program.</p>
-      <button onClick={handleStart} disabled={isRunning}>
+    <div className="academic-container">
+      <h1 className="academic-title">Academic Page</h1>
+      <p className="academic-description">
+        Click the buttons below to start and end the engagement detection program.
+      </p>
+      <button className="academic-button" onClick={handleStart} disabled={isRunning}>
         Start Program
       </button>
-      <button onClick={handleEnd} disabled={!isRunning}>
+      <button className="academic-button" onClick={handleEnd} disabled={!isRunning}>
         End Program
       </button>
     </div>
