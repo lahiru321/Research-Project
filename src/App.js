@@ -8,9 +8,10 @@ import Social from './components/Social';
 import Financial from './components/Financial';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Navbar from './components/Navbar'; // Import the Navbar component
-import { signOut } from 'firebase/auth';  // Import signOut from Firebase
-import { auth } from './firebase';          // Import the initialized auth
+import LearningPlans from './components/LearningPlans';
+import Navbar from './components/Navbar'; 
+import { signOut } from 'firebase/auth';  
+import { auth } from './firebase';          
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/academic" element={<Academic />} />
+        <Route path="/learning-plans" element={<LearningPlans />} />
         <Route path="/relationship" element={<Relationship />} />
         <Route path="/social" element={<Social />} />
         <Route path="/financial" element={<Financial />} />
