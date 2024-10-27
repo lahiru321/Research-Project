@@ -1,17 +1,15 @@
-from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 from fastapi import FastAPI
-from app.routers import routes
-import subprocess
-import os
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.templating import Jinja2Templates
+from app.academic import start_engagement_system, stop_engagement_system
+from app.sociel import get_data, submit_text, TextInput
+import logging
 
 app = FastAPI()
 
-app.include_router(routes.router)
+templates = Jinja2Templates(directory="templates")
 
-engagement_process = None  # Global variable to track the subprocess
+logging.info('FastAPI server started')
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,30 +23,24 @@ app.add_middleware(
 async def read_root():
     return {"message": "Hello, world!"}
 
-
 @app.post("/start")
-async def start_engagement_system():
-    global engagement_process
-    if engagement_process is None or engagement_process.poll() is not None:
-        try:
-            engagement_script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "services", "engagement_system.py")
-            engagement_process = subprocess.Popen(["python", engagement_script_path])
-            return {"status": "Engagement system started"}
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to start engagement system: {e}")
-    return {"status": "Engagement system is already running"}
+async def start_engagement_system_endpoint():
+    return await start_engagement_system()
 
 @app.post("/end")
-async def stop_engagement_system():
-    global engagement_process
-    if engagement_process and engagement_process.poll() is None:
-        try:
-            engagement_process.terminate()
-            engagement_process = None
-            return {"status": "Engagement system stopped"}
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to stop engagement system: {e}")
-    return {"status": "Engagement system is not running"}
+async def stop_engagement_system_endpoint():
+    return await stop_engagement_system()
+
+
+
+
+@app.get("/data", response_model=dict)
+async def get_data_endpoint():
+    return await get_data()
+
+@app.post("/submit")
+async def submit_text_endpoint(input: TextInput):
+    return await submit_text(input)
 
 if __name__ == "__main__":
     import uvicorn

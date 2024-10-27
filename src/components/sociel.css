@@ -1,0 +1,88 @@
+/* Style for split left and right sections */
+.split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #f1f1f1;
+}
+
+.right {
+  right: 0;
+  background-color: #fff;
+}
+
+/* Centered content inside the left split */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Style for the container and form in the right section */
+.container {
+  padding: 20px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the comments section */
+.coment-bottom {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.commented-section {
+  padding: 10px 0;
+}
+
+.commented-section hr {
+  margin: 8px 0;
+}
+
+.bd-highlight {
+  font-size: 1em;
+  color: #333;
+  word-break: break-word;
+}

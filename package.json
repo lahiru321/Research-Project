@@ -9,15 +9,13 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "firebase": "^10.14.0",
+    "my-react-app": "file:",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-<<<<<<< HEAD
-    "react-router-dom": "^6.26.2"
-=======
     "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1"
->>>>>>> e89829d2384249f48838cf16ece24017914c80da
   },
   "browserslist": {
     "production": [
