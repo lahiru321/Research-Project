@@ -1,8 +1,7 @@
-# app/review.py
-
 import logging
 from fastapi import HTTPException
 from pydantic import BaseModel
+from app.helper import preprocessing, vectorizer, get_prediction
 
 data = {
     "reviews": [],
