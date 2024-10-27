@@ -313,6 +313,7 @@ def start_engagement_detection():
                 break
 
         cap.release()
+        print(f"Final Engagement Score: {engagement_score}")
         csv_file.close()
 
         # csv_data = read_csv_as_json('engagement_data/engagement_data.csv')  # Update the path if necessary
@@ -320,12 +321,14 @@ def start_engagement_detection():
 
         cv2.destroyAllWindows()
 
+        return engagement_score
 
         # # Wait for a few seconds before sending the next batch of data
         # time.sleep(5)
 
 if __name__ == "__main__":
-    start_engagement_detection()
+    score = start_engagement_detection()
+    print(f"Final Engagement Score: {score}")
 
 
     

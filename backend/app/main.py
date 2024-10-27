@@ -1,54 +1,38 @@
-from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from fastapi import FastAPI
-from app.routers import routes
-import subprocess
-import os
+from dotenv import load_dotenv
+from app.services.engagment_functon import start_engagement_system, stop_engagement_system
+from app.database.firebase import get_learning_plans, initialize_firebase
+import openai
+# Load environment variables
+# load_dotenv()
 
 app = FastAPI()
+openai.api_key = "sk-d0iNqax7iex9_P9TfIdzV2FJyXP1_JJ2j8rJMzVzpbT3BlbkFJ8iWXAkNLBt7myj8QB6nUYiJGNSN5zVPmMdp9-uzXkA"
 
-app.include_router(routes.router)
-
-engagement_process = None  # Global variable to track the subprocess
-
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow frontend requests
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def read_root():
-    return {"message": "Hello, world!"}
+# Initialize Firebase once at the application startup
+initialize_firebase()
 
+@app.get("/learning-plans")
+async def learning_plans():
+    return await get_learning_plans()
 
 @app.post("/start")
-async def start_engagement_system():
-    global engagement_process
-    if engagement_process is None or engagement_process.poll() is not None:
-        try:
-            engagement_script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "services", "engagement_system.py")
-            engagement_process = subprocess.Popen(["python", engagement_script_path])
-            return {"status": "Engagement system started"}
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to start engagement system: {e}")
-    return {"status": "Engagement system is already running"}
+async def start_engagement(request: Request):
+    return await start_engagement_system(request)
 
 @app.post("/end")
-async def stop_engagement_system():
-    global engagement_process
-    if engagement_process and engagement_process.poll() is None:
-        try:
-            engagement_process.terminate()
-            engagement_process = None
-            return {"status": "Engagement system stopped"}
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to stop engagement system: {e}")
-    return {"status": "Engagement system is not running"}
+async def end_engagement(request: Request):
+    return await stop_engagement_system(request)
 
 if __name__ == "__main__":
     import uvicorn

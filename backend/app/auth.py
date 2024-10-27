@@ -14,3 +14,5 @@ async def verify_token(token: str):
         return decoded_token
     except Exception as e:
         raise HTTPException(status_code=401, detail="Invalid token")
+
+

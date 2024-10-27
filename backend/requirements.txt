@@ -5,3 +5,4 @@ numpy
 scipy
 firebase
 fastapi
+firebase-admin
