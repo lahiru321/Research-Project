@@ -12,6 +12,7 @@
     "bootstrap": "^5.3.3",
     "firebase": "^10.14.0",
     "font-awesome": "^4.7.0",
+    "my-react-app": "file:",
     "react": "^18.0.0",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.0.0",
